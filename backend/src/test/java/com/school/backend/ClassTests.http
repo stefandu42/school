@@ -1,0 +1,27 @@
+### Read classes
+GET http://localhost:9000/classes
+
+### Read class students
+GET http://localhost:9000/classes/1/students
+
+### Create class
+POST http://localhost:9000/classes
+Content-Type: application/json
+
+{
+  "id": 50,
+  "name": "hellzo23"
+}
+
+### Add a student to a class
+POST http://localhost:9000/classes/1/students
+Content-Type: application/json
+
+{
+  "firstname": "stefan",
+  "surname": "mir"
+}
+
+### Delete class
+DELETE http://localhost:9000/classes/1
+
