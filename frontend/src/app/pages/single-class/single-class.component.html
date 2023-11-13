@@ -1,0 +1,25 @@
+<mat-spinner *ngIf="isClassLoading ; else classLoaded" class="center"></mat-spinner>
+
+<ng-template #classLoaded>
+    <img src="./../../../assets/error404.jpg" alt="404 error" *ngIf="showErrorImage ; else classFound" style="margin-left: 15%; margin-top: 15px;" width="70%">
+
+    <ng-template #classFound>
+        <div id="formAddStudent">
+            <app-new-student (addEvent)="onAddStudent($event)"></app-new-student>
+        </div>
+
+
+        <mat-spinner *ngIf="class && !students" class="center"></mat-spinner>
+
+        <h1 *ngIf="students && students.length === 0">There is no student available</h1>
+
+        <div class="card-container">
+            <app-card-class-student 
+                *ngFor="let student of students" 
+                [studentOrClass]="student"
+                typeOfClassReceived="student" 
+                (deleteEvent)="onDeteteStudent($event)">
+            </app-card-class-student>
+        </div>
+    </ng-template>
+</ng-template>

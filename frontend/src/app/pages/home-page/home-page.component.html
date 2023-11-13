@@ -1,0 +1,16 @@
+<div id="formAddClass">
+    <app-new-class (addEvent)="onAddClass($event)"></app-new-class>
+</div>
+
+<mat-spinner *ngIf="!classes" class="center"></mat-spinner>
+
+<h1 *ngIf="classes && classes.length === 0">There is no class available</h1>
+
+<div class="card-container">
+    <app-card-class-student 
+        *ngFor="let class of classes" 
+        [studentOrClass]="class"
+        typeOfClassReceived="class" 
+        (deleteEvent)="onDeteteClass($event)">
+    </app-card-class-student>
+</div>

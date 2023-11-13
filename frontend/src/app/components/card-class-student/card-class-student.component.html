@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-body ">                               
+        <div class="card-title d-flex justify-content-end ">
+            <button mat-fab color="primary" aria-label="Button delete" (click)="onDeleteButton()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <h1 class="card-text d-flex justify-content-center">{{ getTitle() }}</h1>
+
+        <div class="d-flex justify-content-center">
+            <button *ngIf="isDeleteButton && typeOfClassReceived==='class'" routerLink="/class/{{studentOrClass.id}}" class="btn btn-primary">See more</button> 
+            <div *ngIf="!isDeleteButton">
+                <button (click)="onDeleteEvent(({typeOfClassReceived : typeOfClassReceived, studentOrClass : studentOrClass}))" type="button" class="btn btn-success buttonValidator">Delete</button>
+                <button (click)="onCancelButton()" type="button" class="btn btn-danger buttonValidator">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

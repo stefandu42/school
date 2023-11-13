@@ -1,0 +1,27 @@
+<div>
+    <h2 id="title">NEW STUDENT</h2>
+    <form [formGroup]="studentForm" class="form">
+        <mat-form-field class="full-width input">
+            <mat-label >Firstname</mat-label>
+            <input matInput formControlName="firstname">
+            <mat-error *ngIf="studentForm.get('firstname')?.hasError('required')">Firstname is required</mat-error>
+            <mat-error *ngIf="studentForm.get('firstname')?.hasError('maxlength')">Firstname must be at most 50 characters</mat-error>
+            <mat-error *ngIf="studentForm.get('firstname')?.hasError('pattern')">Firstname must not contain numbers</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width input">
+            <mat-label >Surname</mat-label>
+            <input matInput formControlName="surname">
+            <mat-error *ngIf="studentForm.get('surname')?.hasError('required')">Surname is required</mat-error>
+            <mat-error *ngIf="studentForm.get('surname')?.hasError('maxlength')">Surname must be at most 50 characters</mat-error>
+            <mat-error *ngIf="studentForm.get('surname')?.hasError('pattern')">Surname must not contain numbers</mat-error>
+        </mat-form-field>
+        <button type="submit" id="submitForm" mat-fab color="primary" aria-label="Button add"
+                    (click)="onSubmitForm()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </form>
+  </div>
+  
+
+
+
