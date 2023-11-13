@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewClassComponent } from './components/new-class/new-class.component';
+import { NewClassComponent } from './features/classes/components/new-class/new-class.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SingleClassComponent } from './pages/single-class/single-class.component';
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IClass } from 'src/app/models/IClass';
+import { IClass } from 'src/app/core/models/IClass';
 
 @Component({
   selector: 'app-new-class',

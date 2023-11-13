@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
-import { IClass } from 'src/app/models/IClass';
-import { IStudent } from 'src/app/models/IStudent';
-import { ClassesService } from 'src/app/services/classes.service';
-import { StudentsService } from 'src/app/services/students.service';
+import { IClass } from 'src/app/core/models/IClass';
+import { IStudent } from 'src/app/core/models/IStudent';
+import { ClassesService } from 'src/app/core/services/classes.service';
+import { StudentsService } from 'src/app/core/services/students.service';
 
 @Component({
   selector: 'app-single-class',

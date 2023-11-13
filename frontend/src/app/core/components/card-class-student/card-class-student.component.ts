@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IClass } from 'src/app/models/IClass';
-import { IStudent } from 'src/app/models/IStudent';
+import { IClass } from 'src/app/core/models/IClass';
+import { IStudent } from 'src/app/core/models/IStudent';
 
 @Component({
   selector: 'app-card-class-student',

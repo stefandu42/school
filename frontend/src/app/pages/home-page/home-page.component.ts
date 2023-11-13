@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IClass } from 'src/app/models/IClass';
-import { IStudent } from 'src/app/models/IStudent';
-import { ClassesService } from 'src/app/services/classes.service';
+import { IClass } from 'src/app/core/models/IClass';
+import { IStudent } from 'src/app/core/models/IStudent';
+import { ClassesService } from 'src/app/core/services/classes.service';
 
 @Component({
   selector: 'app-home-page',

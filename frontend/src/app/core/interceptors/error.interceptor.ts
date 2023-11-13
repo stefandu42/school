@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { openSnackBar } from './../utils/snackbar';
+import { openSnackBar } from '../../utils/snackbar';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
