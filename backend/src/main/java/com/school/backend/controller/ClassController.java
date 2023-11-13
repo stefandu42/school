@@ -1,11 +1,13 @@
 package com.school.backend.controller;
 
 import com.school.backend.model.Class;
+import java.util.Optional;
 import com.school.backend.model.Student;
 import com.school.backend.service.ClassService;
 import com.school.backend.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +27,21 @@ public class ClassController {
     this.studentService = studentService;
   }
 
+  @CrossOrigin
   @GetMapping("/classes")
   public Iterable<Class> getAll() {
     return classService.getAll();
   }
 
+  @CrossOrigin
+  @GetMapping("/classes/{id}")
+  public Class getClassById(@PathVariable("id") final Long idClass) {
+    Optional<Class> classFound = classService.getClassById(idClass);
+    if(classFound.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Class not found");
+    return classFound.get();
+  }
+
+  @CrossOrigin
   @PostMapping("/classes")
   public ResponseEntity<Class> createOne(@RequestBody Class newClass) {
     if (newClass.getName() == null || newClass.getName().trim().isBlank()) {
@@ -40,17 +52,20 @@ public class ClassController {
     return new ResponseEntity<>(classCreated, HttpStatus.CREATED);
   }
 
+  @CrossOrigin
   @DeleteMapping("/classes/{idClass}")
   public void deleteOneById(@PathVariable final Long idClass) {
     boolean classFound = classService.deleteOneById(idClass);
     if(!classFound) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Class not found");
   }
 
+  @CrossOrigin
   @GetMapping("/classes/{idClass}/students")
   public Iterable<Student> getAllStudentsByIdClass(@PathVariable final Long idClass) {
     return studentService.getAllStudentsByIdClass(idClass);
   }
 
+  @CrossOrigin
   @PostMapping("/classes/{idClass}/students")
   public ResponseEntity<Student> createOneStudent(@RequestBody Student student, @PathVariable Long idClass) {
     if (student.getFirstname() == null || student.getFirstname().trim().isBlank() ||

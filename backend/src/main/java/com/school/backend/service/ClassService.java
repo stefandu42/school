@@ -4,6 +4,7 @@ import com.school.backend.model.Class;
 import com.school.backend.repository.ClassRepository;
 import com.school.backend.repository.StudentRepository;
 import jakarta.transaction.Transactional;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,10 @@ public class ClassService {
 
   public Iterable<Class> getAll() {
     return classRepository.findAll();
+  }
+
+  public Optional<Class> getClassById(final Long idClass) {
+    return classRepository.findById(idClass);
   }
 
   @Transactional
