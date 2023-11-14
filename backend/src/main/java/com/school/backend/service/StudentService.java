@@ -26,12 +26,6 @@ public class StudentService {
     if(!classRepository.existsById(idClass)) return null;
     student.setIdClass(idClass);
     student.setId((long) 0);
-
-    System.out.println(student.getFirstname());
-    System.out.println(student.getFirstname());
-    System.out.println(student.getId());
-    System.out.println(student.getIdClass());
-    System.out.println(idClass);
     return studentRepository.save(student);
   }
 

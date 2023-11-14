@@ -33,8 +33,7 @@ public class ClassService {
     newClass.setName(newClass.getName().trim());
 
     if(classRepository.existsByName(newClass.getName())) return null;
-    Class savedClass = classRepository.save(newClass);
-    return savedClass;
+    return classRepository.save(newClass);
   }
 
   @Transactional

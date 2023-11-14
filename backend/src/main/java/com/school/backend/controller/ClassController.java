@@ -36,6 +36,9 @@ public class ClassController {
   @CrossOrigin
   @GetMapping("/classes/{id}")
   public Class getClassById(@PathVariable("id") final Long idClass) {
+    if (idClass<=0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
+    }
     Optional<Class> classFound = classService.getClassById(idClass);
     if(classFound.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Class not found");
     return classFound.get();
@@ -55,6 +58,9 @@ public class ClassController {
   @CrossOrigin
   @DeleteMapping("/classes/{idClass}")
   public void deleteOneById(@PathVariable final Long idClass) {
+    if (idClass<=0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
+    }
     boolean classFound = classService.deleteOneById(idClass);
     if(!classFound) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Class not found");
   }
@@ -62,6 +68,9 @@ public class ClassController {
   @CrossOrigin
   @GetMapping("/classes/{idClass}/students")
   public Iterable<Student> getAllStudentsByIdClass(@PathVariable final Long idClass) {
+    if (idClass<=0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
+    }
     return studentService.getAllStudentsByIdClass(idClass);
   }
 
@@ -69,7 +78,9 @@ public class ClassController {
   @PostMapping("/classes/{idClass}/students")
   public ResponseEntity<Student> createOneStudent(@RequestBody Student student, @PathVariable Long idClass) {
     if (student.getFirstname() == null || student.getFirstname().trim().isBlank() ||
-        student.getSurname() == null || student.getSurname().trim().isBlank()) {
+        student.getSurname() == null || student.getSurname().trim().isBlank() ||
+        !student.getIdClass().equals(idClass) || idClass<=0
+    ) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
     }
     Student newStudent = studentService.createOneStudent(student, idClass);

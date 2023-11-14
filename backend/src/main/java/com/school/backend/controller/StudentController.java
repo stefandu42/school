@@ -20,6 +20,9 @@ public class StudentController {
   @CrossOrigin
   @DeleteMapping("/students/{idStudent}")
   public void deleteOne(@PathVariable final Long idStudent) {
+    if (idStudent<=0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
+    }
     boolean studentFound = studentService.deleteStudentById(idStudent);
     if(!studentFound) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
   }
