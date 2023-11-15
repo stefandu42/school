@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@RequestMapping("/classes")
+@CrossOrigin
 public class ClassController {
 
   private final ClassService classService;
@@ -32,8 +35,7 @@ public class ClassController {
    *
    * @return An Iterable of Class objects representing all existing classes.
    */
-  @CrossOrigin
-  @GetMapping("/classes")
+  @GetMapping
   public Iterable<Class> getAll() {
     return classService.getAll();
   }
@@ -46,8 +48,7 @@ public class ClassController {
    * @return The Class object corresponding to the provided ID.
    * @throws ResponseStatusException If the ID is invalid or the class is not found.
    */
-  @CrossOrigin
-  @GetMapping("/classes/{id}")
+  @GetMapping("/{id}")
   public Class getClassById(@PathVariable("id") final Long idClass) {
     if (idClass<=0) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
@@ -64,8 +65,7 @@ public class ClassController {
    * @return A ResponseEntity containing the created Class object and HTTP status 201 (Created).
    * @throws ResponseStatusException If some fields of newClass object are invalid or the class already exists.
    */
-  @CrossOrigin
-  @PostMapping("/classes")
+  @PostMapping
   public ResponseEntity<Class> createOne(@RequestBody Class newClass) {
     if (newClass.getName() == null || newClass.getName().trim().isBlank()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
@@ -81,8 +81,7 @@ public class ClassController {
    * @param idClass The ID of the class to delete.
    * @throws ResponseStatusException If the ID is invalid or the class is not found.
    */
-  @CrossOrigin
-  @DeleteMapping("/classes/{idClass}")
+  @DeleteMapping("/{idClass}")
   public void deleteOneById(@PathVariable final Long idClass) {
     if (idClass<=0) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
@@ -98,8 +97,7 @@ public class ClassController {
    * @return An Iterable of Student objects representing all students belonging to the specified class.
    * @throws ResponseStatusException If the ID given is invalid.
    */
-  @CrossOrigin
-  @GetMapping("/classes/{idClass}/students")
+  @GetMapping("/{idClass}/students")
   public Iterable<Student> getAllStudentsByIdClass(@PathVariable final Long idClass) {
     if (idClass<=0) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Some fields are invalid");
@@ -116,8 +114,7 @@ public class ClassController {
    * @return A ResponseEntity containing the created Student object and HTTP status 201 (Created).
    * @throws ResponseStatusException If some fields of student object given are invalid or the class is not found.
    */
-  @CrossOrigin
-  @PostMapping("/classes/{idClass}/students")
+  @PostMapping("/{idClass}/students")
   public ResponseEntity<Student> createOneStudent(@RequestBody Student student, @PathVariable Long idClass) {
     if (student.getFirstname() == null || student.getFirstname().trim().isBlank() ||
         student.getSurname() == null || student.getSurname().trim().isBlank() ||
