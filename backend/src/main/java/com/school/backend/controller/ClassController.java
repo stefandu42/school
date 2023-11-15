@@ -27,12 +27,25 @@ public class ClassController {
     this.studentService = studentService;
   }
 
+  /**
+   * Retrieves all classes.
+   *
+   * @return An Iterable of Class objects representing all existing classes.
+   */
   @CrossOrigin
   @GetMapping("/classes")
   public Iterable<Class> getAll() {
     return classService.getAll();
   }
 
+
+  /**
+   * Retrieves a class by its ID.
+   *
+   * @param idClass The ID of the class to retrieve.
+   * @return The Class object corresponding to the provided ID.
+   * @throws ResponseStatusException If the ID is invalid or the class is not found.
+   */
   @CrossOrigin
   @GetMapping("/classes/{id}")
   public Class getClassById(@PathVariable("id") final Long idClass) {
@@ -44,6 +57,13 @@ public class ClassController {
     return classFound.get();
   }
 
+  /**
+   * Creates a new class.
+   *
+   * @param newClass The Class object representing the new class to be created.
+   * @return A ResponseEntity containing the created Class object and HTTP status 201 (Created).
+   * @throws ResponseStatusException If some fields of newClass object are invalid or the class already exists.
+   */
   @CrossOrigin
   @PostMapping("/classes")
   public ResponseEntity<Class> createOne(@RequestBody Class newClass) {
@@ -55,6 +75,12 @@ public class ClassController {
     return new ResponseEntity<>(classCreated, HttpStatus.CREATED);
   }
 
+  /**
+   * Deletes a class by its ID.
+   *
+   * @param idClass The ID of the class to delete.
+   * @throws ResponseStatusException If the ID is invalid or the class is not found.
+   */
   @CrossOrigin
   @DeleteMapping("/classes/{idClass}")
   public void deleteOneById(@PathVariable final Long idClass) {
@@ -65,6 +91,13 @@ public class ClassController {
     if(!classFound) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Class not found");
   }
 
+  /**
+   * Retrieves all students belonging to a class by its ID.
+   *
+   * @param idClass The ID of the class for which to retrieve students.
+   * @return An Iterable of Student objects representing all students belonging to the specified class.
+   * @throws ResponseStatusException If the ID given is invalid.
+   */
   @CrossOrigin
   @GetMapping("/classes/{idClass}/students")
   public Iterable<Student> getAllStudentsByIdClass(@PathVariable final Long idClass) {
@@ -74,6 +107,15 @@ public class ClassController {
     return studentService.getAllStudentsByIdClass(idClass);
   }
 
+
+  /**
+   * Creates a new student and associates him with a class
+   *
+   * @param student The Student object representing the new student to be created.
+   * @param idClass The ID of the class with which the student should be associated.
+   * @return A ResponseEntity containing the created Student object and HTTP status 201 (Created).
+   * @throws ResponseStatusException If some fields of student object given are invalid or the class is not found.
+   */
   @CrossOrigin
   @PostMapping("/classes/{idClass}/students")
   public ResponseEntity<Student> createOneStudent(@RequestBody Student student, @PathVariable Long idClass) {

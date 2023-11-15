@@ -17,10 +17,23 @@ public class StudentService {
     this.classRepository = classRepository;
   }
 
+  /**
+   * Retrieves all students belonging to a class by its id.
+   *
+   * @param idClass The ID of the class for which to retrieve the students.
+   * @return An Iterable of Student objects representing all students of the specified class.
+   */
   public Iterable<Student> getAllStudentsByIdClass(final Long idClass) {
     return studentRepository.findAllByIdClass(idClass);
   }
 
+  /**
+   * Creates a new student and associates him with a class.
+   *
+   * @param student The Student object representing the new student to be created.
+   * @param idClass The ID of the class with which the student should be associated.
+   * @return The saved Student object if the creation is successful and the class exists, or null otherwise.
+   */
   @Transactional
   public Student createOneStudent(Student student, final Long idClass) {
     if(!classRepository.existsById(idClass)) return null;
@@ -29,6 +42,12 @@ public class StudentService {
     return studentRepository.save(student);
   }
 
+  /**
+   * Deletes a student by his ID.
+   *
+   * @param idStudent The ID of the student to be deleted.
+   * @return True if the student is successfully deleted, false the student does not exist.
+   */
   @Transactional
   public boolean deleteStudentById(final Long idStudent) {
     if (!studentRepository.existsById(idStudent)) return false;

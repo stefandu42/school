@@ -17,6 +17,12 @@ public class StudentController {
     this.studentService = studentService;
   }
 
+  /**
+   * Deletes a student by his ID.
+   *
+   * @param idStudent The ID of the student to delete.
+   * @throws ResponseStatusException If the ID given is invalid or the student is not found.
+   */
   @CrossOrigin
   @DeleteMapping("/students/{idStudent}")
   public void deleteOne(@PathVariable final Long idStudent) {
