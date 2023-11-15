@@ -26,6 +26,9 @@ export class NewClassComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the form submission event. If the form is valid, emits an event to add a new class.
+   */
   onSubmitForm(): void {
     if (!this.classForm.invalid)
       this.addEvent.emit({ ...this.classForm.value, id: 0 });

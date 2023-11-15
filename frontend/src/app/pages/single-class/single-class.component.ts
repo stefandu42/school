@@ -52,6 +52,13 @@ export class SingleClassComponent implements OnInit {
       });
   }
 
+  /**
+   * Handles the deletion of a student.
+   * Deletes the student with the specified ID.
+   * Updates the local students array upon successful deletion.
+   *
+   * @param obj - The object containing information about the student to be deleted.
+   */
   onDeteteStudent(obj: any): void {
     this.studentsService.deleteOneById(obj.studentOrClass.id).subscribe({
       next: (data) => {
@@ -63,7 +70,14 @@ export class SingleClassComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the addition of a new student.
+   * Adds the new student and updates the local students array upon success.
+   *
+   * @param newStudent - The new student to be added.
+   */
   onAddStudent(newStudent: IStudent): void {
+    newStudent.idClass = this.classId;
     this.classesService.createOneStudent(newStudent, this.classId).subscribe({
       next: (data) => {
         this.students.push(data);

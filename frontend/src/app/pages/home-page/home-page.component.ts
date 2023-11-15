@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IClass } from 'src/app/core/models/IClass';
-import { IStudent } from 'src/app/core/models/IStudent';
 import { ClassesService } from 'src/app/core/services/classes.service';
 
 @Component({
@@ -22,6 +21,13 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the deletion of a class.
+   * Deletes the class with the specified ID.
+   * Updates the local classes array upon successful deletion.
+   *
+   * @param obj - The object containing information about the class to be deleted.
+   */
   onDeteteClass(obj: any): void {
     this.classesService.deleteOneById(obj.studentOrClass.id).subscribe({
       next: (data) => {
@@ -33,6 +39,12 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the addition of a new class.
+   * Adds the new class and updates the local classes array upon success.
+   *
+   * @param newClass - The new class to be added.
+   */
   onAddClass(newClass: IClass): void {
     /* RETURNS UNDESIRED LOG IN CONSOLE
     this.classesService.createOne(newClass).pipe(

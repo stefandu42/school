@@ -34,6 +34,9 @@ export class NewStudentComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the form submission event. If the form is valid, emits an event to add a new student.
+   */
   onSubmitForm(): void {
     if (!this.studentForm.invalid)
       this.addEvent.emit({ ...this.studentForm.value, id: 0 });
