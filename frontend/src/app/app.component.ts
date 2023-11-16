@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IClass } from './core/models/IClass';
-import { ClassesService } from './core/services/classes.service';
 
 @Component({
   selector: 'app-root',
